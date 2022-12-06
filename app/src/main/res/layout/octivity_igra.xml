@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gb"
+    android:orientation="vertical"
+    tools:context=".screens.IgraOctivity">
+
+    <LinearLayout
+        android:id="@+id/llTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1">
+        <View
+            android:id="@+id/dragView1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha1"
+            android:layout_gravity="center"/>
+        <View
+            android:id="@+id/dragView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha2"
+            android:layout_gravity="center"/>
+        <View
+            android:id="@+id/dragView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha3"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/caesar_dressing"
+                android:text="VS"
+                android:textColor="#D0A565"
+                android:textSize="55sp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1">
+        <View
+            android:id="@+id/dragView4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha4"
+            android:layout_gravity="center"/>
+        <View
+            android:id="@+id/dragView5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha5"
+            android:layout_gravity="center"/>
+        <View
+            android:id="@+id/dragView6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/picha6"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fightBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="FIGHT"
+        android:backgroundTint="#D0A565"
+        android:textColor="#B84F00"
+        android:fontFamily="@font/caesar_dressing"
+        android:textSize="25sp"/>
+
+</LinearLayout>
