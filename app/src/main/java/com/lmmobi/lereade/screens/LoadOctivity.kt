@@ -44,6 +44,7 @@ class LoadOctivity : AppCompatActivity() {
             val x = workInfos.outputData.getString("adb_status")
             if(x!=null){
                 if (x.equals("adb is true")){
+                    //
                     startActivity(Intent(this, IgraOctivity::class.java))
                 }else if(x.equals("adb is false")){
                     observeData()
