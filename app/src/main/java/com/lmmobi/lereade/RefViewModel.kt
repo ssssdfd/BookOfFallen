@@ -32,12 +32,10 @@ class RefViewModel(application: Application) : AndroidViewModel(application) {
             val myUrl: String
             if (dp != "null") {
                 myUrl = makeRef(c, dp, null, id)
-                Log.d("MyLog", "URL DeepLink:$myUrl")
                 utilsDataSource.sendReport(fb_data = dp)
             }else{
                 val appF: MutableMap<String, Any>? = utilsDataSource.returnAF(c, "something")
                 myUrl = makeRef(c, "null",appF,id)
-                Log.d("MyLog", "URL AppsFlyer:$myUrl")
                 utilsDataSource.sendReport(af_data = appF)
             }
             _url.postValue(myUrl)

@@ -23,12 +23,10 @@ class LoadOctivity : AppCompatActivity() {
         val y = refViewModel.refSource.reference
         if (y == null){
             refViewModel.buildAndGetRef(this)
-            Log.d("MyLog","DB empty")
             refViewModel.url.observe(this){
                 launch(it)
             }
         }else{
-            Log.d("MyLog","DB not empty")
             launch(y.url)
         }
     }

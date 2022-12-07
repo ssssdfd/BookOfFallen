@@ -17,11 +17,9 @@ import kotlin.coroutines.suspendCoroutine
 class UtilsDataSource {
     private val myScope = CoroutineScope(Dispatchers.IO)
     suspend fun returnAF(context: Context, app_id:String):MutableMap<String, Any>?= suspendCoroutine {
-        Log.d("MyLog","start AppsFlyer")
         val key = "movdKJULdszfYkTuBsEk6A"
         AppsFlyerLib.getInstance().init(key, object : AppsFlyerConversionListener {
             override fun onConversionDataSuccess(result: MutableMap<String, Any>?) {
-                Log.d("MyLog","onConversionDataSuccess")
                 val mockAppsData: MutableMap<String, Any> = mutableMapOf()
                 mockAppsData["af_status"] = "Non-organic"
                 mockAppsData["media_source"] = "testSource"
@@ -32,10 +30,9 @@ class UtilsDataSource {
                 mockAppsData["orig_cost"] = "1.22"
                 mockAppsData["af_site_id"] = "testSiteID"
                 mockAppsData["adgroup"] = "testAdgroup"
-                it.resume(mockAppsData)
+                it.resume(result)
             }
             override fun onConversionDataFail(result: String?) {
-                Log.d("MyLog","onConversionDataFail")
                 it.resume(null)
             }
             override fun onAppOpenAttribution(data: MutableMap<String, String>?) {}
@@ -45,11 +42,10 @@ class UtilsDataSource {
     }
 
     suspend fun returnDP(context: Context):String = suspendCoroutine {
-        Log.d("MyLog","returnDP")
         AppLinkData.fetchDeferredAppLinkData(context){result->
-            val deep = "myapp://test11/test22/test33/test44/test55"
-           // it.resume(result?.targetUri.toString())
-            it.resume(deep)
+            val deep = "myapp://test1/test2/test3/test4/test5"
+              it.resume(result?.targetUri.toString())
+            //it.resume(deep)
         }
     }
 
@@ -57,15 +53,12 @@ class UtilsDataSource {
         myScope.launch {
             when {
                 af_data?.get("campaign").toString() == "null" && fb_data == "null" -> {
-                    Log.d("MyLog","organic")
                     OneSignal.sendTag("key2", "organic")
                 }
                 fb_data != "null" -> {
-                    Log.d("MyLog","deeplink install")
                     OneSignal.sendTag("key2", fb_data.replace("myapp://", "").substringBefore("/"))
                 }
                 af_data?.get("campaign").toString() != "null" -> {
-                    Log.d("MyLog","apps install")
                     OneSignal.sendTag(
                         "key2", af_data?.get("campaign").toString().substringBefore("_")
                     )

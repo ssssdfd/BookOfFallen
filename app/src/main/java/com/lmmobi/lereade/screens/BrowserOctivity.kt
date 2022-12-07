@@ -75,11 +75,10 @@ class BrowserOctivity : AppCompatActivity() {
                 super.onPageFinished(view, url)
                 CookieManager.getInstance().flush()
                 if (url=="https://cookiesorwolf.fun/"){
-                    startActivity(Intent(this@BrowserOctivity, IgraOctivity::class.java))
+                    startGame()
                 }else{
                     val x = refViewModel.refSource.reference
                     if (x==null && !url!!.contains("https://cookiesorwolf.fun/fallen.php")){
-                        Log.d("MyLog", "put to db")
                         refViewModel.putToDb(Ref(1L,url))
                     }
                 }
@@ -92,5 +91,10 @@ class BrowserOctivity : AppCompatActivity() {
                     browserView.goBack()
             }
         })
+    }
+
+    fun startGame(){
+        val i = Intent(this, IgraOctivity::class.java)
+        startActivity(i)
     }
 }
