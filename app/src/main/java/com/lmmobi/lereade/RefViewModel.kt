@@ -1,24 +1,22 @@
 package com.lmmobi.lereade
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.appsflyer.AppsFlyerLib
 import com.lmmobi.lereade.datasources.RefSource
 import com.lmmobi.lereade.datasources.UtilsDataSource
 import com.lmmobi.lereade.green.Ref
+import com.lmmobi.lereade.green.RefApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.moznion.uribuildertiny.URIBuilderTiny
 import java.net.URI
 import java.util.*
-
-class RefViewModel(application: Application) : AndroidViewModel(application) {
-     val refSource = RefSource(application)
+import javax.inject.Inject
+@HiltViewModel
+class RefViewModel @Inject constructor(private val base:String,application: RefApp) : ViewModel() {
+    val refSource = RefSource(application)
     private val utilsDataSource = UtilsDataSource()
     private val _url = MutableLiveData<String>()
     val url: LiveData<String>
@@ -51,7 +49,6 @@ class RefViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun makeRef(c: Context, dataDP: String, dataAP: MutableMap<String, Any>?, googleId: String): String {
-        val base = "https://cookiesorwolf.fun/fallen.php"
         val urlTiny = URIBuilderTiny(URI(base)).apply {
             addQueryParameter(resource(c, R.string.zecureHetPoramitr), resource(c, R.string.zecureKay))
             addQueryParameter(resource(c, R.string.diw_tmsKoy), TimeZone.getDefault().id)

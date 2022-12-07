@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
-import android.util.Log
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,7 +13,9 @@ import androidx.activity.viewModels
 import com.lmmobi.lereade.RefViewModel
 import com.lmmobi.lereade.databinding.OctivityBrowserBinding
 import com.lmmobi.lereade.green.Ref
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BrowserOctivity : AppCompatActivity() {
     private lateinit var binding: OctivityBrowserBinding
     private lateinit var browserView:WebView

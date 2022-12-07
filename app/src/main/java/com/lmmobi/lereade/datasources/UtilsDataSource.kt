@@ -1,7 +1,6 @@
 package com.lmmobi.lereade.datasources
 
 import android.content.Context
-import android.util.Log
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.facebook.applinks.AppLinkData
@@ -20,16 +19,6 @@ class UtilsDataSource {
         val key = "movdKJULdszfYkTuBsEk6A"
         AppsFlyerLib.getInstance().init(key, object : AppsFlyerConversionListener {
             override fun onConversionDataSuccess(result: MutableMap<String, Any>?) {
-                val mockAppsData: MutableMap<String, Any> = mutableMapOf()
-                mockAppsData["af_status"] = "Non-organic"
-                mockAppsData["media_source"] = "testSource"
-                mockAppsData["campaign"] = "test1_test2_test3_test4_test5"
-                mockAppsData["adset"] = "testAdset"
-                mockAppsData["adset_id"] = "testAdsetId"
-                mockAppsData["campaign_id"] = "testCampaignId"
-                mockAppsData["orig_cost"] = "1.22"
-                mockAppsData["af_site_id"] = "testSiteID"
-                mockAppsData["adgroup"] = "testAdgroup"
                 it.resume(result)
             }
             override fun onConversionDataFail(result: String?) {
@@ -43,9 +32,7 @@ class UtilsDataSource {
 
     suspend fun returnDP(context: Context):String = suspendCoroutine {
         AppLinkData.fetchDeferredAppLinkData(context){result->
-            val deep = "myapp://test1/test2/test3/test4/test5"
               it.resume(result?.targetUri.toString())
-            //it.resume(deep)
         }
     }
 
