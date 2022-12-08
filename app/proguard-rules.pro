@@ -20,3 +20,10 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.devolverdigital.** { *; }
+-keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+public static java.lang.String TABLENAME;
+}
+-keep class **$Properties { *; }
+
+-dontwarn net.sqlcipher.database.**
+-dontwarn rx.*
